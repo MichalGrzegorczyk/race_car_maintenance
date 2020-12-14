@@ -17,12 +17,15 @@ class _AddScreenState extends State<AddScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Dodaj nowe auto"),
+          title: Text("New car"),
         ),
         body: Column(
           children: [
+            Text("Name"),
             TextField(controller: nameController),
+            Text("Make"),
             TextField(controller: makeController),
+            Text("Model"),
             TextField(controller: modelController),
             MaterialButton(
               onPressed: () {
@@ -35,7 +38,7 @@ class _AddScreenState extends State<AddScreen> {
                     model: modelController.text));
                 Navigator.pop(context);
               },
-              child: Text("Dodaj"),
+              child: Text("Add"),
             )
           ],
         ));

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dbhelper.dart';
 import 'entry.dart';
+import 'carMenu.dart';
 import 'details.dart';
 import 'class/Car.dart';
 import 'add.dart';
@@ -71,13 +72,13 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: ListView.builder(
-          itemCount: carList.length,
+          itemCount: cars.length,
           itemBuilder: (context, i) => ListTile(
                 title: Text(cars[i]?.name),
                 onTap: () => Navigator.push(
                     context,
                     new MaterialPageRoute(
-                        builder: (context) => DetailsScreen(entry: cars[i]))),
+                        builder: (context) => carMenuScreen(entry: cars[i]))),
               )),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(
