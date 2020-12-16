@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dbhelper.dart';
-import 'entry.dart';
-import 'carMenu.dart';
-import 'details.dart';
+import 'CarMenu.dart';
 import 'class/Car.dart';
-import 'add.dart';
-import 'package:sqflite/sqflite.dart';
-
-var carList = [Car(id: "1", name: "kompot", make: "BMW", model: "E36 Compact")];
+import 'addCar.dart';
 
 void main() {
   runApp(MyApp());
@@ -38,16 +33,16 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   DbHelper dbHelper = DbHelper();
-  List<Entry> cars;
-  int numberOfCars = 0;
+  List<Car> cars;
+  int numberOfCars = 1;
 
   @override
   Widget build(BuildContext context) {
     updateList();
-    if (cars.length == 0)
-      return noCarsWidget(context);
-    else
+    if (numberOfCars > 0)
       return carsListWidget(context);
+    else
+      return noCarsWidget(context);
   }
 
   Widget noCarsWidget(BuildContext context) {
@@ -58,7 +53,7 @@ class _MyHomePageState extends State<MyHomePage> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => AddScreen()),
+          MaterialPageRoute(builder: (context) => AddCarScreen()),
         ),
         tooltip: 'Increment',
         child: Icon(Icons.add),
@@ -72,18 +67,22 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: ListView.builder(
-          itemCount: cars.length,
+          itemCount: numberOfCars,
           itemBuilder: (context, i) => ListTile(
+                leading: CircleAvatar(
+                  backgroundImage: AssetImage('lib/img/' + cars[i]?.logoName),
+                  // backgroundImage: AssetImage('lib/img/bmw.png'),
+                ),
                 title: Text(cars[i]?.name),
                 onTap: () => Navigator.push(
                     context,
                     new MaterialPageRoute(
-                        builder: (context) => carMenuScreen(entry: cars[i]))),
+                        builder: (context) => CarMenuScreen(car: cars[i]))),
               )),
       floatingActionButton: FloatingActionButton(
         onPressed: () => Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => AddScreen()),
+          MaterialPageRoute(builder: (context) => AddCarScreen()),
         ),
         tooltip: 'Increment',
         child: Icon(Icons.add),
