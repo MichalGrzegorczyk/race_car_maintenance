@@ -34,7 +34,7 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   DbHelper dbHelper = DbHelper();
   List<Car> cars;
-  int numberOfCars = 1;
+  int numberOfCars = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +71,6 @@ class _MyHomePageState extends State<MyHomePage> {
           itemBuilder: (context, i) => ListTile(
                 leading: CircleAvatar(
                   backgroundImage: AssetImage('lib/img/' + cars[i]?.logoName),
-                  // backgroundImage: AssetImage('lib/img/bmw.png'),
                 ),
                 title: Text(cars[i]?.name),
                 onTap: () => Navigator.push(

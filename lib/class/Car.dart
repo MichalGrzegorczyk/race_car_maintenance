@@ -1,4 +1,6 @@
-class Car {
+import 'package:race_car_maintenance/class/DbTable.dart';
+
+class Car implements DbTable {
   final int id;
   final String name;
   final String make;

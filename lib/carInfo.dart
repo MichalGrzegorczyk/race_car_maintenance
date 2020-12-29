@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'dbhelper.dart';
 import 'class/Car.dart';
 
-class DetailsScreen extends StatelessWidget {
+class CarInfoScreen extends StatelessWidget {
   final Car car;
 
-  DetailsScreen({this.car});
+  final String tableName = "carInfo";
+
+  CarInfoScreen({this.car});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +23,7 @@ class DetailsScreen extends StatelessWidget {
           MaterialButton(
             onPressed: () {
               var helper = DbHelper();
-              helper.deleteEntry(car);
+              helper.deleteEntry(car, tableName);
 
               Navigator.pop(context);
             },

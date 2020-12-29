@@ -1,4 +1,5 @@
 import 'package:path/path.dart';
+import 'package:race_car_maintenance/class/DbTable.dart';
 import 'package:sqflite/sqflite.dart';
 import 'class/Car.dart';
 
@@ -32,12 +33,19 @@ class DbHelper {
         make TEXT,
         model TEXT,
         logoName TEXT
+      );
+      CREATE TABLE carInfo(
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+      carId INTEGER,
+      engineId INTEGER,
+      manufactureDate TEXT,
+      engineCode TEXT
       )
     """);
   }
 
-  Future<int> insertEntry(Car entry) async {
-    var result = await db.insert('cars', entry.toMapWithoutId(),
+  Future<int> insertEntry(DbTable entry, String tableName) async {
+    var result = await db.insert(tableName, entry.toMapWithoutId(),
         conflictAlgorithm: ConflictAlgorithm.replace);
 
     return result;
@@ -49,9 +57,9 @@ class DbHelper {
     return List.generate(result.length, (i) => Car.fromMap(result[i]));
   }
 
-  Future<int> deleteEntry(Car entry) async {
+  Future<int> deleteEntry(DbTable entry, String tableName) async {
     var result =
-        await db.delete("cars", where: 'id = ?', whereArgs: [entry.id]);
+        await db.delete(tableName, where: 'id = ?', whereArgs: [entry.id]);
     return result;
   }
 }

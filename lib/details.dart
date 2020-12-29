@@ -8,6 +8,8 @@ class DetailsScreen extends StatelessWidget {
 
   DetailsScreen({this.car});
 
+  String tableName = "cars";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +23,7 @@ class DetailsScreen extends StatelessWidget {
           MaterialButton(
             onPressed: () {
               var helper = DbHelper();
-              helper.deleteEntry(car);
+              helper.deleteEntry(car, tableName);
 
               Navigator.pop(context);
             },

@@ -12,6 +12,7 @@ class _AddCarScreenState extends State<AddCarScreen> {
   TextEditingController nameController = new TextEditingController();
   TextEditingController makeController = new TextEditingController();
   TextEditingController modelController = new TextEditingController();
+  String tableName = "cars";
 
   @override
   Widget build(BuildContext context) {
@@ -47,12 +48,14 @@ class _AddCarScreenState extends State<AddCarScreen> {
                 var helper = DbHelper();
 
                 //helper.open();
-                helper.insertEntry(new Car(
-                    id: 0,
-                    name: nameController.text,
-                    make: makeController.text,
-                    model: modelController.text,
-                    logoName: "bmw.png"));
+                helper.insertEntry(
+                    new Car(
+                        id: 0,
+                        name: nameController.text,
+                        make: makeController.text,
+                        model: modelController.text,
+                        logoName: "bmw.png"),
+                    tableName);
                 Navigator.pop(context);
               },
               child: Text("Add"),
