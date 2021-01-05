@@ -14,21 +14,33 @@ class CarInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(title: Text(car.name)),
-        body: Column(children: [
-          Text(
-            car.make,
-            textScaleFactor: 2,
-          ),
-          Text(car.model),
-          MaterialButton(
-            onPressed: () {
-              var helper = DbHelper();
-              helper.deleteEntry(car, tableName);
+        body: ListView(
+          padding: const EdgeInsets.all(8),
+          children: <Widget>[
+            Container(
+              height: 50,
+              color: Colors.amber[600],
+              child: const Center(child: Text("")),
+            ),
+            Container(
+              height: 50,
+              color: Colors.amber[500],
+              child: const Center(child: Text("")),
+            ),
+            Container(
+              height: 50,
+              color: Colors.amber[100],
+              child: MaterialButton(
+                onPressed: () {
+                  var helper = DbHelper();
+                  helper.deleteEntry(car, tableName);
 
-              Navigator.pop(context);
-            },
-            child: Text("Usuń"),
-          )
-        ]));
+                  Navigator.pop(context);
+                },
+                child: Text("Usuń"),
+              ),
+            ),
+          ],
+        ));
   }
 }

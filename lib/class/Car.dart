@@ -6,6 +6,15 @@ class Car implements DbTable {
   final String make;
   final String model;
   final String logoName;
+  int get getId => id;
+
+  String get getName => name;
+
+  String get getMake => make;
+
+  String get getModel => model;
+
+  String get getLogoName => logoName;
 
   Car({this.id, this.name, this.make, this.model, this.logoName});
   Map<String, dynamic> toMap() {

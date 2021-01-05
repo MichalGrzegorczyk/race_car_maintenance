@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:race_car_maintenance/carInfo.dart';
 import 'details.dart';
 import 'class/Car.dart';
 
@@ -12,6 +13,8 @@ class CarMenuScreen extends StatelessWidget {
     'Notifications',
     'Runs'
   ];
+
+  //final List<String>
   final List<int> colorCodes = <int>[600, 500, 400, 300, 200, 100];
 
   CarMenuScreen({this.car});
@@ -43,7 +46,7 @@ class CarMenuScreen extends StatelessWidget {
                     onTap: () => Navigator.push(
                         context,
                         new MaterialPageRoute(
-                            builder: (context) => DetailsScreen(car: car))),
+                            builder: (context) => CarInfoScreen(car: car))),
                     child: Container(
                       height: 50,
                       color: Colors.amber[colorCodes[index]],
